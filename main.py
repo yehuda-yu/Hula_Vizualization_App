@@ -1,4 +1,3 @@
-ce# -*- coding: utf-8 -*-
 """
 Created on Wed Aug 16 18:07:39 2023
 
