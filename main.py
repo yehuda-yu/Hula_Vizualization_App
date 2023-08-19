@@ -41,7 +41,7 @@ def read_data_from_drive(url):
 
 # Load data from drive
 url =  st.secrets["URL"]
-data = download_file_from_drive(url)
+data = read_data_from_drive(url)
 
 # Define the color palette and columns for the graphs
 color_palette = {
