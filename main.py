@@ -12,14 +12,41 @@ from datetime import datetime, timedelta
 
 
 # Load the CSV data
-@st.cache
-def load_data():
-    data = pd.read_csv(r"G:\.shortcut-targets-by-id\1Spfn4HZFHCo6_zAchC1HsLjXBu7Dc_mx\Hula\Data_Processed\Merged-licor-loggernet-30min.csv")
-    data['TIMESTAMP'] = pd.to_datetime(data['TIMESTAMP'])  # Convert timestamp to datetime
-    data['air_temperature'] = data['air_temperature']-273.15
-    return data
+@st.cache_data
+def download_file_from_drive(file_id, destination_path):
+  '''
+    Downloads a file from Google Drive using the provided file ID and saves it to the specified destination path.
+    Inputs:
+        - file_id (str): The ID of the file to download from Google Drive.
+        - destination_path (str): The path where the downloaded file will be saved.
+    Process:
+        - Constructs the download URL using the file ID.
+        - Sends a GET request to the URL to download the file.
+        - Reads and cleans the data from the downloaded file using pandas.
+    Output:
+        - data: pandas dataframe.
+  '''
+  url = f"https://drive.google.com/uc?export=download&id={file_id}"
+  response = requests.get(url)
 
-data = load_data()
+  if response.status_code == 200:
+      with open(destination_path, "wb") as file:
+          file.write(response.content)
+      print("File downloaded successfully.")
+  else:
+      print("Failed to download file.")
+  # read and clean the data
+  data = pd.read_csv("Clean_data.xlsx")
+  data['TIMESTAMP'] = pd.to_datetime(data['TIMESTAMP'])  # Convert timestamp to datetime
+  data['air_temperature'] = data['air_temperature']-273.15
+  
+  return data
+  
+
+# Load data from drive
+file_id =  st.secrets["FILE_ID"]
+destination_path = "Merged-licor-loggernet-30min.csv"
+fit_model = download_file_from_drive(file_id, destination_path)
 
 # Define the color palette and columns for the graphs
 color_palette = {
