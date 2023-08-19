@@ -54,8 +54,11 @@ color_palette = {
 }
 
 # Streamlit app layout
-st.title('Hula Lake Environmental Data')
-
+st.title('Hula Lake Eddy Covariance Station Data Viewer')
+st.write("This application displays data from the Eddy Covariance measuring station, located in the Hula lake vegetation island, Israel. The data is updated once a week. You can use this application to view, control, and visualize the data.")
+st.markdown("""
+**Developed by:** Yehuda Yungstein, *The Monitoring and Modeling Vegetation Systems* lab, The Hebrew University, Israel
+""")
 
 # Quality Check Button
 with st.expander("Run Quality Check"):
