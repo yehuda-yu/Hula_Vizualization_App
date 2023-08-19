@@ -35,6 +35,12 @@ def read_data_from_drive(url):
     
     # Convert temperature to Celsius
     data['air_temperature'] = data['air_temperature'] - 273.15
+
+    # Specify the start date
+    start_date = pd.to_datetime('2023-05-18')
+
+    # Filter the DataFrame starting from the specified date
+    data = data[data['TIMESTAMP'] >= start_date]
     
     return data
  
