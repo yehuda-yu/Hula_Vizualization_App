@@ -46,7 +46,7 @@ def download_file_from_drive(file_id, destination_path):
 # Load data from drive
 file_id =  st.secrets["FILE_ID"]
 destination_path = "Merged-licor-loggernet-30min.xlsx"
-fit_model = download_file_from_drive(file_id, destination_path)
+data = download_file_from_drive(file_id, destination_path)
 
 # Define the color palette and columns for the graphs
 color_palette = {
