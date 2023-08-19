@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ce# -*- coding: utf-8 -*-
 """
 Created on Wed Aug 16 18:07:39 2023
 
@@ -27,7 +27,7 @@ def download_file_from_drive(file_id, destination_path):
     Output:
         - data: pandas dataframe.
   '''
-  url = f"https://docs.google.com/spreadsheets/d/1gs61UphojSzk69jGkWHEGMvBp-WTq9JG3kJGdsA9Oqs/edit#gid={file_id}"
+  url = f"https://docs.google.com/spreadsheets/d/1WS4xeH4bzoKXEFMCJ9jx8vAnT59K8byN/edit#gid={file_id}"
   response = requests.get(url)
 
   if response.status_code == 200:
@@ -37,7 +37,7 @@ def download_file_from_drive(file_id, destination_path):
   else:
       print("Failed to download file.")
   # read and clean the data
-  data = pd.read_csv("Merged-licor-loggernet-30min.csv")
+  data = pd.read_excel("Merged-licor-loggernet-30min.xlsx")
   data['TIMESTAMP'] = pd.to_datetime(data['TIMESTAMP'])  # Convert timestamp to datetime
   data['air_temperature'] = data['air_temperature']-273.15
   
@@ -46,7 +46,7 @@ def download_file_from_drive(file_id, destination_path):
 
 # Load data from drive
 file_id =  st.secrets["FILE_ID"]
-destination_path = "Merged-licor-loggernet-30min.csv"
+destination_path = "Merged-licor-loggernet-30min.xlsx"
 fit_model = download_file_from_drive(file_id, destination_path)
 
 # Define the color palette and columns for the graphs
