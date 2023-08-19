@@ -13,40 +13,35 @@ import requests
 
 # Load the CSV data from Google Drive
 @st.cache_data
-def download_file_from_drive(file_id, destination_path):
-  '''
-    Downloads a file from Google Drive using the provided file ID and saves it to the specified destination path.
+def read_data_from_drive(url):
+    """
+    Downloads a file from the provided Google Drive URL and processes the data.
+    
     Inputs:
-        - file_id (str): The ID of the file to download from Google Drive.
-        - destination_path (str): The path where the downloaded file will be saved.
-    Process:
-        - Constructs the download URL using the file ID.
-        - Sends a GET request to the URL to download the file.
-        - Reads and cleans the data from the downloaded file using pandas.
-    Output:
-        - data: pandas dataframe.
-  '''
-  url = f"https://docs.google.com/spreadsheets/d/1WS4xeH4bzoKXEFMCJ9jx8vAnT59K8byN/edit#gid={file_id}"
-  response = requests.get(url)
-
-  if response.status_code == 200:
-      with open(destination_path, "wb") as file:
-          file.write(response.content)
-      print("File downloaded successfully.")
-  else:
-      print("Failed to download file.")
-  # read and clean the data
-  data = pd.read_excel("Merged-licor-loggernet-30min.xlsx")
-  data['TIMESTAMP'] = pd.to_datetime(data['TIMESTAMP'])  # Convert timestamp to datetime
-  data['air_temperature'] = data['air_temperature']-273.15
-  
-  return data
-  
+        - url (str): The URL of the Google Drive file to download.
+        
+    Outputs:
+        - data: Processed pandas DataFrame containing the data.
+    """
+    # Find the ID of the file from the URL
+    file_id = url.split('/')[-2]
+    dwn_url = 'https://drive.google.com/uc?id=' + file_id
+    
+    # Read the file into a DataFrame
+    data = pd.read_csv(dwn_url)
+    
+    # Convert the date column to datetime
+    data['TIMESTAMP'] = pd.to_datetime(data['TIMESTAMP'])
+    
+    # Convert temperature to Celsius
+    data['air_temperature'] = data['air_temperature'] - 273.15
+    
+    return data
+ 
 
 # Load data from drive
-file_id =  st.secrets["FILE_ID"]
-destination_path = "Merged-licor-loggernet-30min.xlsx"
-data = download_file_from_drive(file_id, destination_path)
+url =  st.secrets["URL"]
+data = download_file_from_drive(url)
 
 # Define the color palette and columns for the graphs
 color_palette = {
