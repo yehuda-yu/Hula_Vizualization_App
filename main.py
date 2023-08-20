@@ -142,7 +142,7 @@ sub_data['TIMESTAMP'] = data['TIMESTAMP'].values
 # Grouped columns plot
 grouped_fig = px.line(sub_data, x="TIMESTAMP", y=sub_data.columns,
                   hover_data={"TIMESTAMP": "|%B %d, %Y"},
-                  color_discrete_sequence=['#01befe','#edf2f4','#219ebc','#ef233c'],
+                  color_discrete_sequence=['#ffb703','#edf2f4','#219ebc','#ef233c'],
                   title='Time Series of Energy Balance')
 
 grouped_fig.update_xaxes(rangeslider_visible=True)
