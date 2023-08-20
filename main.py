@@ -41,6 +41,9 @@ def read_data_from_drive(url):
 
     # Filter the DataFrame starting from the specified date
     data = data[data['TIMESTAMP'] >= start_date]
+
+    # Clac G from Energy Balance
+    data['G'] = data[''NET_Avg']-data['H']- data['LE']
     
     return data
  
@@ -125,7 +128,7 @@ for idx, column in enumerate(columns_to_check):
 st.header('Environmental Data Time Series')
 
 # Columns to group in the same graph
-grouped_columns = ['NET_Avg', 'H', 'LE']
+grouped_columns = ['NET_Avg', 'H', 'LE','G']
 temp_columns = ['air_temperature', 'Temp_Surface_Avg', 'Temp_Deep_Avg']
 co2_col = ['co2_flux']
 
@@ -133,13 +136,13 @@ remaining_columns = [col for col in color_palette.keys() if col not in grouped_c
 
 # create sub-data with energy balance columns
 sub_data = data[grouped_columns]
-sub_data.columns = ['Rn', 'H', 'LE']
+sub_data.columns = ['Rn', 'H', 'LE', 'G']
 sub_data['TIMESTAMP'] = data['TIMESTAMP'].values
 
 # Grouped columns plot
 grouped_fig = px.line(sub_data, x="TIMESTAMP", y=sub_data.columns,
                   hover_data={"TIMESTAMP": "|%B %d, %Y"},
-                  color_discrete_sequence=['#f05d5e','#0f7173','#e7ecef'],
+                  color_discrete_sequence=['#ffb703','#ffdd00','#8f00ff','#01befe'],
                   title='Time Series of Energy Balance')
 
 grouped_fig.update_xaxes(rangeslider_visible=True)
