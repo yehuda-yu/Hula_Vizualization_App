@@ -140,7 +140,7 @@ sub_data.columns = ['Rn', 'H', 'LE', 'G']
 sub_data['TIMESTAMP'] = data['TIMESTAMP'].values
 
 # Grouped columns plot
-grouped_fig = px.area(sub_data, x="TIMESTAMP", y=sub_data.columns,
+grouped_fig = px.line(sub_data, x="TIMESTAMP", y=sub_data.columns,
                   hover_data={"TIMESTAMP": "|%B %d, %Y"},
                   color_discrete_sequence=['#ffb703','#edf2f4','#219ebc','#ef233c'],
                   title='Time Series of Energy Balance')
