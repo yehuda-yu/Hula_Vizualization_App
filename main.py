@@ -43,7 +43,7 @@ def read_data_from_drive(url):
     data = data[data['TIMESTAMP'] >= start_date]
 
     # Clac G from Energy Balance
-    data['G'] = data[''NET_Avg']-data['H']- data['LE']
+    data['G'] = data['NET_Avg']-data['H']- data['LE']
     
     return data
  
