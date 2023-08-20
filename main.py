@@ -175,7 +175,7 @@ co2_fig = px.area(co2_data, x="TIMESTAMP", y=co2_data.columns,
 co2_fig.update_xaxes(rangeslider_visible=True)
 # Set y-axis limits (adjust the values as needed)
 co2_fig.update_yaxes(range=[-70, 70])
-# co2_fig.update_layout(yaxis_title='mmol/m^3')
+co2_fig.update_layout(yaxis_title='umol/m^2*s')
 st.plotly_chart(co2_fig)
 
 # User selection for individual column
