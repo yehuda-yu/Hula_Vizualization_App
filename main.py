@@ -245,8 +245,8 @@ ndvi_fig.add_trace(
         x=df_ndvi['C0/date'],
         y=mean + std,
         mode='lines',
-        line=dict(color='rgba(0, 255, 0, 0.2)', width=0),
-        fillcolor='rgba(0, 255, 0, 0.2)',
+        line=dict(color='green', width=0),
+        fillcolor='green',
         fill='tonexty',
         name='+1 Std Dev'
     )
@@ -257,8 +257,8 @@ ndvi_fig.add_trace(
         x=df_ndvi['C0/date'],
         y=mean - std,
         mode='lines',
-        line=dict(color='rgba(0, 255, 0, 0.2)', width=0),
-        fillcolor='rgba(0, 255, 0, 0.2)',
+        line=dict(color='green', width=0),
+        fillcolor='green',
         fill='tonexty',
         name='-1 Std Dev'
     )
