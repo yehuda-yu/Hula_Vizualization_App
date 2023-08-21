@@ -246,6 +246,22 @@ ndvi_fig.add_trace(
 ndvi_fig.add_trace(
     go.Scatter(
         x=df_ndvi['C0/date'],
+        y=std + std,
+        mode='lines',
+        line=dict(color='green', width=0),
+        fillcolor='green',
+        opacity=0.2,
+        fill='toself',
+        name='+1 Std Dev',
+        showlegend=False
+    )
+)
+
+"""
+# Add the standard deviation area
+ndvi_fig.add_trace(
+    go.Scatter(
+        x=df_ndvi['C0/date'],
         y=mean + std,
         mode='lines',
         line=dict(color='green', width=0),
@@ -270,7 +286,7 @@ ndvi_fig.add_trace(
         showlegend=False
     )
 )
-
+"""
 ndvi_fig.update_layout(
     title='NDVI Mean and STD ',
     xaxis_title='Date',
