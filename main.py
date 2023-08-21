@@ -207,3 +207,65 @@ except KeyError:
     st.error(f"Column '{selected_column}' not found in the dataset.")
 except Exception as e:
     st.error(f"An error occurred: {e}")
+
+# Read NDVI file from drive an Plot NDVI Time Series
+
+# Find the ID of the file from the URL
+file_id = url.split('/')[-2]
+dwn_url = 'https://drive.google.com/file/d/1WTK92yxdSYCapVA-LNUxwdqkA3x-HIk7/view?usp=sharing'
+
+# Read the file into a DataFrame
+df_ndvi = pd.read_csv(dwn_url)
+
+# Convert column to dtetime
+df_ndvi['C0/date'] = pd.to_datetime(df_ndvi['C0/date'])
+# Calculate the mean and standard deviation
+mean = df_ndvi['C0/mean']
+std = df_ndvi['C0/stDev']
+
+# Create the plot
+ndvi_fig = go.Figure()
+
+# Add the mean line
+ndvi_fig.add_trace(
+    go.Scatter(
+        x=df_ndvi['C0/date'],
+        y=mean,
+        mode='lines',
+        line=dict(color='green', width=2),
+        name='Mean'
+    )
+)
+
+# Add the standard deviation area
+ndvi_fig.add_trace(
+    go.Scatter(
+        x=df_ndvi['C0/date'],
+        y=mean + std,
+        mode='lines',
+        line=dict(color='rgba(0, 255, 0, 0.2)', width=0),
+        fillcolor='rgba(0, 255, 0, 0.2)',
+        fill='tonexty',
+        name='+1 Std Dev'
+    )
+)
+
+ndvi_fig.add_trace(
+    go.Scatter(
+        x=df_ndvi['C0/date'],
+        y=mean - std,
+        mode='lines',
+        line=dict(color='rgba(0, 255, 0, 0.2)', width=0),
+        fillcolor='rgba(0, 255, 0, 0.2)',
+        fill='tonexty',
+        name='-1 Std Dev'
+    )
+)
+
+ndvi_fig.update_layout(
+    title='NDVI Mean and STD ',
+    xaxis_title='Date',
+    yaxis_title='Value'
+)
+# plot the NDVI
+st.plotly_chart(ndvi_fig)
