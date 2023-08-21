@@ -9,6 +9,7 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime, timedelta
 import requests
+import openpyxl
 
 
 # Load the CSV data from Google Drive
