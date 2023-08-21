@@ -234,7 +234,7 @@ ndvi_fig.add_trace(
         x=df_ndvi['C0/date'],
         y=mean,
         mode='lines',
-        line=dict(color='green', width=2),
+        line=dict(color='darkgreen', width=2),
         name='Mean'
     )
 )
