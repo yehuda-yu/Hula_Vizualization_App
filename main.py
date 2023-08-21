@@ -211,11 +211,11 @@ except Exception as e:
 # Read NDVI file from drive an Plot NDVI Time Series
 
 # Find the ID of the file from the URL
-dwn_url = 'https://drive.google.com/file/d/1WSlIb8VKpoHOyBba20HMUiHnwNzbV_VM/view?usp=drive_link'
+dwn_url = 'https://docs.google.com/spreadsheets/d/1WTrp7f2PXoEUyRGc2t4geVufzpCja8gH/edit?usp=drive_link&ouid=102952062029422280975&rtpof=true&sd=true'
 reconstructed_url='https://drive.google.com/uc?id=' + dwn_url.split('/')[-2]
 
 # Read the file into a DataFrame
-df_ndvi = pd.read_csv(reconstructed_url)
+df_ndvi = pd.read_excel(reconstructed_url)
 
 # Convert column to dtetime
 df_ndvi['C0/date'] = pd.to_datetime(df_ndvi['C0/date'])
