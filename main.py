@@ -228,6 +228,9 @@ df_ndvi['C0/date'] = pd.to_datetime(df_ndvi['C0/date'])
 mean = df_ndvi['C0/mean']
 std = df_ndvi['C0/stDev']
 
+# Create the plot
+ndvi_fig = go.Figure()
+
 # Add the standard deviation area
 ndvi_fig.add_trace(
     go.Scatter(
