@@ -267,7 +267,7 @@ ndvi_fig.add_trace(
 ndvi_fig.update_layout(
     title='NDVI Mean and STD ',
     xaxis_title='Date',
-    yaxis_title='Value'
+    yaxis_title='NDVI'
 )
 # plot the NDVI
 st.plotly_chart(ndvi_fig)
