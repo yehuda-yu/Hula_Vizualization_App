@@ -235,8 +235,8 @@ ndvi_fig.add_trace(
         y=mean + std,
         mode='lines',
         line=dict(color='green', width=0),
-        fillcolor='lime',
-        fill_alpha=0.5,
+        fillcolor='green',
+        opacity=0.5,
         fill='tonexty',
         name='+1 Std Dev'
     )
@@ -258,8 +258,8 @@ ndvi_fig.add_trace(
         y=mean - std,
         mode='lines',
         line=dict(color='green', width=0),
-        fillcolor='lime',
-        fill_alpha=0.5,
+        fillcolor='green',
+        opacity=0.5,
         fill='tonexty',
         name='-1 Std Dev'
     )
