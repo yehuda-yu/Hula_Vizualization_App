@@ -252,7 +252,7 @@ ndvi_fig.add_trace(
         fillcolor='green',
         opacity=0.2,
         fill='toself',
-        name='+1 Std Dev'
+        name='+1 Std Dev',
         showlegend=False
     )
 )
