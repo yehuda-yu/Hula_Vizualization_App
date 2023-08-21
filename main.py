@@ -154,6 +154,9 @@ st.plotly_chart(grouped_fig)
 
 # create sub-data with temperature columns
 temp_data = data[temp_columns]
+
+# Change cols names
+temp_data.columns = ['air_temperature', 'Temp_10cm_Depth', 'Temp_20cm_Depth']
 # Convert temp to Celsius
 temp_data['TIMESTAMP'] = data['TIMESTAMP'].values
 
