@@ -251,7 +251,7 @@ ndvi_fig.add_trace(
         line=dict(color='green', width=0),
         fillcolor='green',
         opacity=0.2,
-        fill='tonexty',
+        fill='toself',
         name='+1 Std Dev'
     )
 )
@@ -264,7 +264,7 @@ ndvi_fig.add_trace(
         line=dict(color='green', width=0),
         fillcolor='green',
         opacity=0.2,
-        fill='tonexty',
+        fill='toself',
         name='-1 Std Dev'
     )
 )
