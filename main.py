@@ -228,6 +228,19 @@ std = df_ndvi['C0/stDev']
 # Create the plot
 ndvi_fig = go.Figure()
 
+# Add the standard deviation area
+ndvi_fig.add_trace(
+    go.Scatter(
+        x=df_ndvi['C0/date'],
+        y=mean + std,
+        mode='lines',
+        line=dict(color='green', width=0),
+        fillcolor='lime',
+        fill_alpha=0.5,
+        fill='tonexty',
+        name='+1 Std Dev'
+    )
+)
 # Add the mean line
 ndvi_fig.add_trace(
     go.Scatter(
@@ -239,25 +252,14 @@ ndvi_fig.add_trace(
     )
 )
 
-# Add the standard deviation area
-ndvi_fig.add_trace(
-    go.Scatter(
-        x=df_ndvi['C0/date'],
-        y=mean + std,
-        mode='lines',
-        line=dict(color='green', width=0),
-        fillcolor='lime',
-        fill='tonexty',
-        name='+1 Std Dev'
-    )
-)
 ndvi_fig.add_trace(
     go.Scatter(
         x=df_ndvi['C0/date'],
         y=mean - std,
         mode='lines',
-        line=dict(color='lime', width=0),
-        fillcolor='green',
+        line=dict(color='green', width=0),
+        fillcolor='lime',
+        fill_alpha=0.5,
         fill='tonexty',
         name='-1 Std Dev'
     )
@@ -268,8 +270,6 @@ ndvi_fig.update_layout(
     xaxis_title='Date',
     yaxis_title='NDVI'
 )
-
-
 
 # plot the NDVI
 st.plotly_chart(ndvi_fig)
