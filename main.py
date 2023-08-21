@@ -227,7 +227,7 @@ std = df_ndvi['C0/stDev']
 
 # Create the plot
 ndvi_fig = go.Figure()
-)
+
 # Add the mean line
 ndvi_fig.add_trace(
     go.Scatter(
@@ -250,7 +250,7 @@ ndvi_fig.add_trace(
         fill='tonexty',
         name='+1 Std Dev'
     )
-
+)
 ndvi_fig.add_trace(
     go.Scatter(
         x=df_ndvi['C0/date'],
