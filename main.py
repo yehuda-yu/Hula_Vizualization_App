@@ -240,6 +240,16 @@ ndvi_fig.add_trace(
         name='+1 Std Dev'
     )
 )
+# Add the mean line
+ndvi_fig.add_trace(
+    go.Scatter(
+        x=df_ndvi['C0/date'],
+        y=mean,
+        mode='lines',
+        line=dict(color='darkgreen', width=2),
+        name='Mean'
+    )
+)
 
 ndvi_fig.add_trace(
     go.Scatter(
@@ -259,16 +269,7 @@ ndvi_fig.update_layout(
     yaxis_title='NDVI'
 )
 
-# Add the mean line
-ndvi_fig.add_trace(
-    go.Scatter(
-        x=df_ndvi['C0/date'],
-        y=mean,
-        mode='lines',
-        line=dict(color='darkgreen', width=2),
-        name='Mean'
-    )
-)
+
 
 # plot the NDVI
 st.plotly_chart(ndvi_fig)
