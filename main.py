@@ -85,7 +85,7 @@ with st.expander("Run Quality Check"):
     st.metric(label=text, value=delta_label, delta=average_value,)
 
     # Add voltage of battary
-    voltage_col = 'Batt_volt'
+    voltage_col = 'Batt_volt_Min'
     values_to_check = data[voltage_col].tail(10)  # Assuming you want to check the first 10 values
     average_value = values_to_check.mean()
     delta_label = 'Battery Voltage'
