@@ -78,7 +78,7 @@ st.markdown("""
 # Quality Check Button
 with st.expander("Run Quality Check"):
     co2_signal_column = 'co2_signal_strength_7500_mean'
-    values_to_check = data[co2_signal_column].head(10)  # Assuming you want to check the first 10 values
+    values_to_check = data[co2_signal_column].tail(10)  # Assuming you want to check the first 10 values
     average_value = values_to_check.mean()
     delta_label = 'CO2 Strenth Signal'
     text = ' '
