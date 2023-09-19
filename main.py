@@ -83,7 +83,14 @@ with st.expander("Run Quality Check"):
     delta_label = 'CO2 Strenth Signal'
     text = ' '
     st.metric(label=text, value=delta_label, delta=average_value,)
-    
+
+    # Add voltage of battary
+    voltage_col = 'Batt_volt'
+    values_to_check = data[voltage_col].tail(10)  # Assuming you want to check the first 10 values
+    average_value = values_to_check.mean()
+    delta_label = 'Battery Voltage'
+    text = ' '
+    st.metric(label=text, value=delta_label, delta=average_value,)
 
 # Quality Check Metrics (placed at the top within an expander)
 with st.expander("Last Week Mean"):
