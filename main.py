@@ -79,7 +79,7 @@ st.markdown("""
 with st.expander("Run Quality Check"):
     co2_signal_column = 'co2_signal_strength_7500_mean'
     values_to_check = data[co2_signal_column].tail(10)  # Assuming you want to check the first 10 values
-    average_value = values_to_check.mean()
+    average_value = round(values_to_check.mean(),2)
     delta_label = 'CO2 Strenth Signal'
     text = ' '
     st.metric(label=text, value=delta_label, delta=average_value,)
@@ -87,7 +87,7 @@ with st.expander("Run Quality Check"):
     # Add voltage of battary
     voltage_col = 'Batt_volt_Min'
     values_to_check = data[voltage_col].tail(10)  # Assuming you want to check the first 10 values
-    average_value = values_to_check.mean()
+    average_value = round(values_to_check.mean(),2)
     delta_label = 'Battery Voltage'
     text = ' '
     st.metric(label=text, value=delta_label, delta=average_value,)
